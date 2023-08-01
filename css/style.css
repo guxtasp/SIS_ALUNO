@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Sora:wght@100;200;300;400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins';
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100%;
+    background-image: url(../assets/fndo-index.webp);
+    overflow-x: hidden;
+
+}
+
+.btn-primary > a{
+    color: white;
+}
+
+.btn-crud{
+    cursor: pointer;
+    border: 0.1px solid #ccc;
+    padding: 2px 5px;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.delete{
+    color: white;
+    background-color: red;
+}
+
+
+.direcionador-paginas, .cadastro-usuario, .lista-usuario{
+    margin: 50px 0px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    width: 300px;
+    padding: 20px 20px 50px 20px;
+    gap: 20px;
+    align-items: center;
+    background-color: #ffffff;
+    border: 0.1px solid #ccc;
+    border-radius: 20px;
+}
+.cadastro-usuario{
+    width: 500px;
+}
+#lista-usuario{
+    width: 1200px;
+}
+.exclusiva-para-notas{
+    width: 1200px;
+}
+.identificacao-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.identificacao-section > img{
+    width: 50px;
+}
+hr{
+    width: 100%;
+}
+.title-section{
+    font-size: 30px;
+}
+.btn-direcionamento > a{
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+}
+
+.btn-direcionamento{
+    border: 0.1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+}
+.btn-direcionamento:hover{
+    background-color: #f2e6bd;
+    border: #cccccc00;
+}
+.btns-direcionamento{
+    display: flex;
+    gap: 20px;
+}
+
+.exclusiva-acesso{
+    width: 700px;
+}
+
+.disciplina {
+    width: 800px;
+}
+
+.exclusiva{
+    background-color: #000000;
+}
+.exclusiva:hover{
+    background-color: rgb(51, 50, 50);
+}
+
+.exclusiva > a{
+    color: #ffc60a;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dados-usuario{
+    display: flex;
+    flex-wrap: wrap;
+    align-items:center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.preenchimento-dados{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.preenchimento-dados > label{
+    font-size: 15px;
+}
+
+.preenchimento-dados > input, .preenchimento-dados > select{
+    width: 200px;
+    border-radius: 10px;
+    border: 0.1px solid #ccc;
+    padding: 5px;
+}
+.form-cadastro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+.btns-funcionais{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#cadastrar, .button{
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 10px;
+    border: 0.1px solid #7b7b7b ;
+    background-color: #000000;
+    color: #ffc60a;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.button > a{
+    text-decoration: none;
+    color: #ffc60a;
+}
+
+table, th, td{
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    padding: 5px;
+}
+th{
+    font-size: 15px;
+    padding: 8px;
+}
+
+td{
+    font-size: 14px;
+    padding: 8px;
+    text-align: center;
+    
+}
+
+.btn-alterar{
+    background-color: #ffc60a;
+}
+
+.btn-diario{
+    margin: 0;
+}
+
+.add{
+    background-color: cornflowerblue;
+}

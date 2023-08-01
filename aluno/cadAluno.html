@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <section class="cadastro-usuario">
+    <div class="identificacao-section">
+      <img src="assets/logotipo_logo.png" alt="">
+      <h1 class="title-section">Cadastro de Aluno</h1>
+    </div>
+    <hr>
+    <form method="GET" action="crudaluno.php" class="form-cadastro" onsubmit="return validarFormulario()">
+
+      <div class="dados-usuario">
+        <div class="preenchimento-dados">
+          <label for="nomeAluno">Nome:</label>
+          <input type="text" name="nomeAluno">
+        </div>
+
+        <div class="preenchimento-dados">
+          <label for="telefoneAluno">Telefone:</label>
+          <input type="text" name="telefoneAluno" id="telefone" maxlength="15" pattern="\(\d{2}\) \d{5}-\d{4}" placeholder="(XX) XXXXX-XXXX" required>
+        </div>
+
+        <div class="preenchimento-dados">
+          <label for="enderecoAluno">Endereço:</label>
+          <input type="text" name="enderecoAluno">
+        </div>
+
+        <div class="preenchimento-dados">
+          <label for="emailAluno">E-mail:</label>
+          <input type="mail" name="emailAluno" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|com\.br)" required>
+        </div>
+
+        <div class="preenchimento-dados">
+          <label for="senhaAluno">Senha:</label>
+          <input type="password" name="senhaAluno">
+        </div>
+
+        <div class="preenchimento-dados">
+          <label for="matriculaAluno">Matricula:</label>
+          <input type="text" name="matriculaAluno" maxlength="10" class="format-input">
+        </div>
+      </div>
+
+      <div class="preenchimento-dados">
+        <label for="dtaNascimentoAluno">Data de Nascimento:</label>
+        <input type="date" name="dtaNascimentoAluno" required>
+      </div>
+
+      <div class="btns-funcionais">
+        <input type="submit" name="cadastrar" value="Cadastrar" id="cadastrar">
+        <button class="button"><a href="acesso-aluno.html">Voltar</a></button>
+      </div>
+    </form>
+
+  </section>
+
+  <script>
+    function validarFormulario() {
+      // Obter os campos do formulário
+      const nomeAluno = document.querySelector('[name="nomeAluno"]').value;
+      const telefoneAluno = document.querySelector('[name="telefoneAluno"]').value;
+      const emailAluno = document.querySelector('[name="emailAluno"]').value;
+      const senhaAluno = document.querySelector('[name="senhaAluno"]').value;
+      const matriculaAluno = document.querySelector('[name="matriculaAluno"]').value;
+      const dtaNascimentoAluno = document.querySelector('[name="dtaNascimentoAluno"]').value;
+      const enderecoAluno = document.querySelector('[name="enderecoAluno"]').value;
+
+      // Validar Nome Completo
+      if (nomeAluno.length < 10) {
+        alert("O Nome Completo deve ter no mínimo 10 caracteres.");
+        return false;
+      }
+
+      // Validar Telefone
+      if (!/\(\d{2}\) \d{5}-\d{4}/.test(telefoneAluno)) {
+        alert("Digite um telefone válido no formato (XX) XXXXX-XXXX.");
+        return false;
+      }
+
+      // Validar E-mail
+      if (!/^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/.test(emailAluno)) {
+        alert("Digite um e-mail válido.");
+        return false;
+      }
+
+      // Validar Senha
+      if (senhaAluno.length < 6) {
+        alert("A senha deve ter no mínimo 6 caracteres.");
+        return false;
+      }
+
+      // Validar Matrícula
+      if (matriculaAluno.length !== 10) {
+        alert("A matrícula deve conter exatamente 15 caracteres.");
+        return false;
+      }
+
+      // Validar Data de Nascimento
+      if (!dtaNascimentoAluno) {
+        alert("Selecione uma Data de Nascimento.");
+        return false;
+      }
+
+      // Validar Endereço
+      if (!enderecoAluno) {
+        alert("O campo Endereço é obrigatório.");
+        return false;
+      }
+
+      return true; // Envia o formulário se todas as validações passarem
+    }
+
+    // Função para aplicar a máscara ao campo de telefone
+    function aplicarMascaraTelefone(event) {
+      const input = event.target;
+      const numero = input.value.replace(/\D/g, '');
+      const formatado = `(${numero.substring(0, 2)}) ${numero.substring(2, 7)}-${numero.substring(7, 11)}`;
+      input.value = formatado;
+    }
+
+    // Selecionar o campo de telefone e adicionar o evento de input para aplicar a máscara
+    const telefoneInput = document.getElementById('telefone');
+    telefoneInput.addEventListener('input', aplicarMascaraTelefone);
+
+
+  </script>
+
+</body>
+
+</html>
