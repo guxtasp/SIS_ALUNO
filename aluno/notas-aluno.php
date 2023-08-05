@@ -71,6 +71,9 @@
             <img src="assets/logotipo_logo.png" alt="">
             <h1 class="title-section">Notas</h1>
         </div>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                Infelizmente, essa funcionalidade está em fase de construção devido empecilhos no banco de dados.
+            </div>
         <hr>
         <form method="POST">
             <div class="form-group">

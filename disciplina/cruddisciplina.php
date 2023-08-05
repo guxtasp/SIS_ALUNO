@@ -9,7 +9,7 @@ if(isset($_GET['cadastrar'])){
         $Professor_idProfessor = $_GET["codProfessor"];
 
         ##codigo SQL
-        $sql = "INSERT INTO Disciplina(nomeDisciplina,cargaHoraria, Professor_idProfessor) 
+        $sql = "INSERT INTO disciplina(nomedisciplina,ch,idprofessor) 
                 VALUES('$nomeDisciplina','$cargaHoraria','$Professor_idProfessor')";
 
         ##junta o codigo sql a conexao do banco
@@ -18,10 +18,27 @@ if(isset($_GET['cadastrar'])){
         ##executa o sql no banco de dados
         if($sqlcombanco->execute())
             {
-                echo " <strong>OK!</strong> o Professor
-                $nomeDisciplina foi Incluido com sucesso!!!"; 
-                echo " <button class='button'><a href='caddisciplina.php'>Voltar</a></button>";
-                echo " <button class='button'><a href='listadisciplina.php'>Listar disciplinas</a></button>";
+                echo "<!DOCTYPE html>
+        <html lang='en'>
+        <head>
+            <meta charset='UTF-8'>
+            <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+            <link rel='stylesheet' href='../css/style.css'>
+            <title>Document</title>
+        </head>
+        <body>
+        <section class='cadastro-usuario alterar-dados'>
+            <div class='identificacao-section'>
+                <img src='assets/logotipo_logo.png' alt=''>
+                <h1 class='title-section'>A disciplina
+                $nomeDisciplina foi Incluido com sucesso!!!</h1>
+            </div>
+            <button class='button'><a href='listadisciplina.php'>Voltar</a></button>
+            
+        </section>
+        </body>
+        </html>";
             }
         }
 
@@ -32,10 +49,9 @@ if (isset($_POST['update'])) {
         $nomeDisciplina = $_POST['nomeDisciplina'];
         $cargaHoraria = $_POST['cargaHoraria'];
         $Professor_idProfessor = $_POST['codProfessor'];
-        echo $codDisciplina;
-        echo $Professor_idProfessor;
+
     // Código SQL para atualização...
-    $sql = "UPDATE  Disciplina SET nomeDisciplina = :nomeDisciplina, cargaHoraria = :cargaHoraria, Professor_idProfessor = :Professor_idProfessor WHERE codDisciplina = :codDisciplina ";
+    $sql = "UPDATE  disciplina SET nomedisciplina = :nomeDisciplina, ch = :cargaHoraria, idprofessor = :Professor_idProfessor WHERE id = :codDisciplina ";
 
     // Junta o código SQL à conexão do banco
     $stmt = $conexao->prepare($sql);
@@ -47,10 +63,27 @@ if (isset($_POST['update'])) {
     $stmt->bindParam(':Professor_idProfessor', $Professor_idProfessor, PDO::PARAM_INT);
     // Executa a consulta
     if ($stmt->execute()) {
-        echo "<strong>OK!</strong> O Professor foi atualizado com sucesso!";
-        echo " <button class='button'><a href='listadisciplina.php'>Voltar</a></button>";
+        echo "<!DOCTYPE html>
+              <html lang='en'>
+              <head>
+                  <meta charset='UTF-8'>
+                  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+                  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                  <link rel='stylesheet' href='../css/style.css'>
+                  <title>Document</title>
+              </head>
+              <body>
+              <section class='cadastro-usuario alterar-dados'>
+                  <div class='identificacao-section'>
+                      <img src='../assets/logotipo_logo.png' alt=''>
+                      <h1 class='title-section'>Alterado com sucesso!</h1>
+                  </div>
+                  <button class='button'><a href='listadisciplina.php'>Voltar</a></button>
+              </section>
+              </body>
+              </html>";
     } else {
-        echo "Erro ao atualizar o Professor.";
+        echo "Erro ao atualizar o aluno.";
     }
 }
 
@@ -60,20 +93,34 @@ if (isset($_POST['update'])) {
 // Função para realizar a exclusão do professor
 function excluirDisciplina($conexao, $codDisciplina) {
     try {
-        $sql = "DELETE FROM `Disciplina` WHERE codDisciplina = :codDisciplina";
+        $sql = "DELETE FROM `disciplina` WHERE id = :codDisciplina";
         $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $stmt = $conexao->prepare($sql);
         $stmt->bindParam(':codDisciplina', $codDisciplina, PDO::PARAM_INT);
         $stmt->execute();
-
-        echo "<strong>OK!</strong> O Disciplina $codDisciplina foi excluído!!!";
-        echo " <button class='button'><a href='listadisciplina.php'>Voltar</a></button>";
+        echo "<!DOCTYPE html>
+        <html lang='en'>
+        <head>
+            <meta charset='UTF-8'>
+            <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+            <link rel='stylesheet' href='../css/style.css'>
+            <title>Document</title>
+        </head>
+        <body>
+        <section class='cadastro-usuario alterar-dados'>
+            <div class='identificacao-section'>
+                <img src='../assets/logotipo_logo.png' alt=''>
+                <h1 class='title-section'>A disciplina $codDisciplina foi excluída!!!</h1>
+            </div>
+            <button class='button'><a href='listadisciplina.php'>Voltar</a></button>
+        </section>
+        </body>
+        </html>";
     } catch (PDOException $e) {
         echo "Erro ao excluir o registro: " . $e->getMessage();
     }
 }
-
-// Supondo que você já tenha a conexão com o banco de dados $conexao e o cod do disciplina que deseja excluir $coddisciplina.
 
 // Verificar se a exclusão foi solicitada e se o cod do disciplina foi forneccodo
 if (isset($_GET['excluir']) && isset($_GET['codDisciplina'])) {
@@ -84,12 +131,34 @@ if (isset($_GET['excluir']) && isset($_GET['codDisciplina'])) {
         excluirDisciplina($conexao, $codDisciplina);
     } else {
         // Caso o usuário ainda não tenha confirmado a exclusão, exibir o formulário de confirmação
-        echo "Tem certeza que deseja excluir o Disciplina $codDisciplina?";
-        echo "<form action='cruddisciplina.php?excluir=1&codDisciplina=$codDisciplina' method='post'>";
-        echo "<input type='hidden' name='confirmar' value='1'>";
-        echo "<button type='submit'>Confirmar</button>";
-        echo "</form>";
-        echo "<button><a href='listadisciplina.php'>Cancelar</a></button>";
+        echo "<!DOCTYPE html>";
+        echo "<html lang='en'>";
+        echo "<head>";
+        echo "    <meta charset='UTF-8'>";
+        echo "    <meta name='viewport' content='width=device-width, initial-scale=1.0'>";
+        echo "    <title>Excluir Disciplina</title>";
+        echo "    <link rel='stylesheet' href='../css/style.css'>";
+        echo "<style>a, .editar{
+            text-decoration: none;
+            color: #ffff;
+        }</style>";
+        echo "</head>";
+        echo "<body>";
+        echo "<section class='cadastro-usuario alterar-dados'>";
+        echo "    <div class='identificacao-section'>";
+        echo "        <img src='assets/logotipo_logo.png' alt=''>";
+        echo "        <h1 class='title-section'>Excluir disciplina</h1>";
+        echo "    </div>";
+        echo "    <div>";
+        echo "        Tem certeza que deseja excluir a disciplina $codDisciplina?";
+        echo "        <form action='cruddisciplina.php?excluir=1&codDisciplina=$codDisciplina' method='post'>";
+        echo "            <input type='hidden' name='confirmar' value='1'>";
+        echo "            <button class='btn-crud' type='submit'>Confirmar</button>";
+        echo "        </form>";
+        echo "        <button class='btn-crud delete'><a class='editar' href='listadisciplina.php'>Cancelar</a></button>";
+        echo "    </div>";
+        echo "</section>";
+        echo "<body>";
     }
 }
 

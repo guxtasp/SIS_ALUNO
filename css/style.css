@@ -24,7 +24,7 @@ body{
 .btn-crud{
     cursor: pointer;
     border: 0.1px solid #ccc;
-    padding: 2px 5px;
+    padding: 5px 8px;
     background-color: green;
     color: white;
     font-weight: bold;
@@ -197,4 +197,31 @@ td{
 
 .add{
     background-color: cornflowerblue;
+}
+#dados-usuario-alterar{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#alterar-dados{
+    gap: 10px;
+}
+#btn-alterar{
+    padding: 10px;
+    background-color: #ffc60a;
+    color: #000000;
+    font-weight: bold;
+    border: black solid 1px;
+    border-radius: 20px; 
+}
+
+a.btn-white-text:hover{
+    text-decoration: none;
+    color: white;
+}
+
+.button > a:hover {
+    text-decoration: none;
+    color: white;
 }

@@ -17,9 +17,9 @@
         <hr>
         <form method="POST" action="processarMatricula.php">
             <label for="idAluno">ID ou Nome do Aluno:</label>
-            <input type="text" id="idAluno" name="idAluno" required>
+            <input type="text" id="id" name="id" required>
             <br>
-            <input name="codDisciplina" type="hidden" value="<?php echo $_POST['codDisciplina']; ?>" />
+            <input name="id" type="hidden" value="<?php echo $_POST['id']; ?>" />
             <button type="submit" class="btn-crud">Matricular</button>
         </form>
         <?php

@@ -14,12 +14,12 @@
 
 require_once('../conexao.php');
 
-$retorno = $conexao->prepare('SELECT * FROM Professor');
+$retorno = $conexao->prepare('SELECT * FROM professor');
 $retorno->execute();
 
 function imprimirStatus($valor) {
     // Verifica se o valor é igual a 1 ou true
-    if ($valor === 1 || $valor === true || $valor === 'AT') {
+    if ($valor === 1 || $valor === 'true' || $valor === 'AT') {
     return "ATIVO";
     } else {
     return "INATIVO";
@@ -52,18 +52,27 @@ function imprimirStatus($valor) {
             <tr>
                 <?php foreach ($retorno->fetchall() as $value) { ?>
             <tr>
-                <td> <?php echo $value['idProfessor'] ?> </td>
-                <td> <?php echo $value['nomeProfessor'] ?> </td>
-                <td> <?php echo $value['telefoneProfessor'] ?> </td>
-                <td> <?php echo $value['enderecoProfessor'] ?> </td>
-                <td> <?php echo $value['emailProfessor'] ?> </td>
-                <td> <?php echo $value['dtaNascimentoProfessor'] ?> </td>
-                <td> <?php echo imprimirStatus($value['statusProfessor']) ?> </td>
-                <td> <?php echo $value['acessoProfessor'] ?> </td>
+                <td> <?php echo $value['id'] ?> </td>
+                <td> <?php echo $value['nome'] ?> </td>
+                <td> <?php if (!empty($value['telefone'])) {
+                                echo $value['telefone'];
+                            } ?>
+                    </td>
+                <td> <?php echo $value['endereco'] ?> </td>
+                <td> <?php if (!empty($value['emailProfessor'])) {
+                                echo $value['emailProfessor'];
+                            } ?>
+                    </td>
+                    <td> <?php if (!empty($value['datanascimento'])) {
+                                echo $value['datanascimento'];
+                            } ?>
+                    </td>
+                <td> <?php echo imprimirStatus($value['estatus']) ?> </td>
+                <td> <?php echo $value['siape'] ?> </td>
 
                 <td>
                     <form method="POST" action="AltProfessor.php">
-                        <input name="idProfessor" id="professor"  type="hidden" value="<?php echo $value['idProfessor']; ?>" />
+                        <input name="id" id="professor"  type="hidden" value="<?php echo $value['id']; ?>" />
                         <button name="alterar" type="submit" class="btn-crud">Alterar</button>
                     </form>
 
@@ -71,7 +80,7 @@ function imprimirStatus($valor) {
 
                 <td>
                     <form method="GET" action="crudProfessor.php">
-                        <input name="idProfessor" type="hidden" id="professor2" value="<?php echo $value['idProfessor']; ?>" />
+                        <input name="idProfessor" type="hidden" id="professor2" value="<?php echo $value['id']; ?>" />
                         <button name="excluir" type="submit" class="btn-crud delete">Excluir</button>
                     </form>
                     

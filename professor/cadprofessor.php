@@ -22,7 +22,7 @@
       <h1 class="title-section">Cadastro de Professor</h1>
     </div>
     <hr>
-    <form method="POST" action="crudprofessor.php" class="form-cadastro" onsubmit="return validarFormulario()">
+    <form method="post" action="crudprofessor.php" class="form-cadastro" onsubmit="return validarFormulario()">
 
       <div class="dados-usuario">
         <div class="preenchimento-dados">
@@ -59,7 +59,7 @@
 
       <div class="preenchimento-dados">
         <label for="dtaNascimentoProfessor">Data de Nascimento:</label>
-        <input type="date" name="dtaNascimentoProfessor" id="dtaNascimentoProfessor" required>
+        <input type="date" name="datanascimentoProfessor" id="dtaNascimentoProfessor" required>
       </div>
 
       </div>
@@ -116,18 +116,39 @@
     }
 
 
-
-    // Função para aplicar a máscara ao campo de telefone
     function aplicarMascaraTelefone(event) {
-      const input = event.target;
-      const numero = input.value.replace(/\D/g, '');
-      const formatado = `(${numero.substring(0, 2)}) ${numero.substring(2, 7)}-${numero.substring(7, 11)}`;
-      input.value = formatado;
-    }
+  const input = event.target;
+  const keyCode = event.keyCode || event.which;
+  const numero = input.value.replace(/\D/g, ''); // Remover caracteres não numéricos
+  let formatado = `(${numero.substring(0, 2)}) ${numero.substring(2, 7)}`;
 
-    // Selecionar o campo de telefone e adicionar o evento de input para aplicar a máscara
-    const telefoneInput = document.getElementById('telefone');
-    telefoneInput.addEventListener('input', aplicarMascaraTelefone);
+  if (numero.length > 7) {
+    formatado += `-${numero.substring(7, 11)}`;
+  }
+
+  // Verificar se a tecla pressionada é a tecla "backspace" (código 8)
+  // ou se o caractere a ser apagado é o parêntese "(" (código 40) ou ")"
+  // ou se é o hífen (código 189) ou a barra (código 191)
+  if (
+    keyCode === 8 ||
+    keyCode === 40 || // Código para o parêntese "("
+    keyCode === 41 || // Código para o parêntese ")"
+    keyCode === 189 || // Código para o hífen "-"
+    keyCode === 191 // Código para a barra "/"
+  ) {
+    // Restaurar o valor formatado sem o caractere removido
+    input.value = formatado;
+    return;
+  }
+
+  input.value = formatado;
+}
+
+// Selecionar o campo de telefone e adicionar o evento de input para aplicar a máscara
+const telefoneInput = document.getElementById('telefone');
+telefoneInput.addEventListener('input', aplicarMascaraTelefone);
+
+
   </script>
 
 

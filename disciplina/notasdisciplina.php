@@ -17,8 +17,8 @@
 
     require_once('../conexao.php');
 
-    $retorno = $conexao->prepare('SELECT a.nomeAluno, c.nota, d.nomeDisciplina, p.nomeProfessor
-FROM Disciplina d, Professor p, Aluno a, Cursa c
+    $retorno = $conexao->prepare('SELECT *
+FROM Disciplina;
 WHERE c.Aluno_idAluno = a.idAluno and d.Professor_idProfessor = p.idProfessor and c.Disciplina_codDisciplina = d.codDisciplina  order by nomeAluno');
     $retorno->execute();
 
@@ -27,8 +27,12 @@ WHERE c.Aluno_idAluno = a.idAluno and d.Professor_idProfessor = p.idProfessor an
         <div class="identificacao-section">
             <img src="assets/logotipo_logo.png" alt="">
             <h1 class="title-section">Notas</h1>
+            
         </div>
         <hr>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                Infelizmente, essa funcionalidade está em fase de construção devido empecilhos no banco de dados.
+            </div>
         <input class="form-control" id="myInput" type="text" placeholder="Procurar..">
         <table>
             <thead>
@@ -44,10 +48,20 @@ WHERE c.Aluno_idAluno = a.idAluno and d.Professor_idProfessor = p.idProfessor an
                 <tr>
                     <?php foreach ($retorno->fetchall() as $value) { ?>
                 <tr>
-                    <td> <?php echo $value['nomeAluno'] ?> </td>
-                    <td> <?php echo $value['nota'] ?> </td>
-                    <td> <?php echo $value['nomeDisciplina'] ?> </td>
-                    <td> <?php echo $value['nomeProfessor'];?>
+                    <td> <?php
+                            if (!empty($value['nomeAluno'])) {
+                                echo $value['nomeAluno'];
+                            }
+                            ?> </td>
+                    <td>
+                        <?php
+                        if (!empty($value['nota'])) {
+                            echo $value['nota'];
+                        }
+                        ?>
+                    </td>
+                    <td> <?php echo $value['nomedisciplina'] ?> </td>
+                    <td> <?php echo $value['idprofessor']; ?>
                     </td>
                 </tr>
             <?php  }  ?>
@@ -56,7 +70,7 @@ WHERE c.Aluno_idAluno = a.idAluno and d.Professor_idProfessor = p.idProfessor an
         </table>
         </div>
         <?php
-        echo "<button class='button button3'><a href='acesso-disciplina.html'>Voltar</a></button>";
+        echo "<button class='button button3'><a href='acesso-disciplina.html' >Voltar</a></button>";
         ?>
     </section>
     <script>
@@ -70,5 +84,6 @@ WHERE c.Aluno_idAluno = a.idAluno and d.Professor_idProfessor = p.idProfessor an
         });
     </script>
 </body>
+
 
 </html>

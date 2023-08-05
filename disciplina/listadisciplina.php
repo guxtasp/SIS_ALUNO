@@ -14,9 +14,8 @@
 
 require_once('../conexao.php');
 
-$retorno = $conexao->prepare('SELECT d.codDisciplina, d.nomeDisciplina, d.cargaHoraria, p.nomeProfessor, d.Professor_idProfessor
-FROM Disciplina d, Professor p
-WHERE d.Professor_idProfessor = p.idProfessor order by nomeDisciplina');
+$retorno = $conexao->prepare('SELECT * 
+FROM Disciplina order by nomedisciplina');
 $retorno->execute();
 
 ?>
@@ -41,24 +40,22 @@ $retorno->execute();
             <tr>
                 <?php foreach ($retorno->fetchall() as $value) { ?>
             <tr>
-                <td> <?php echo $value['codDisciplina'] ?> </td>
-                <td> <?php echo $value['nomeDisciplina'] ?> </td>
-                <td> <?php echo $value['cargaHoraria'] ?> </td>
-                <td> <?php echo $value['nomeProfessor'];
-                echo " -"?> 
-                <?php echo $value['Professor_idProfessor'] ?> 
+                <td> <?php echo $value['id'] ?> </td>
+                <td> <?php echo $value['nomedisciplina'] ?> </td>
+                <td> <?php echo $value['ch'] ?> </td>
+                <td> <?php echo $value['idprofessor'];
+                ?> 
             </td>
                 <td>
                     <form method="POST" action="Altdisciplina.php">
-                        <input name="codDisciplina" id="professor"  type="hidden" value="<?php echo $value['codDisciplina']; ?>" />
+                        <input name="codDisciplina" id="professor"  type="hidden" value="<?php echo $value['id']; ?>" />
                         <button name="alterar" type="submit" class="btn-crud">Alterar</button>
                     </form>
-
                 </td>
 
                 <td>
                     <form method="GET" action="cruddisciplina.php">
-                        <input name="codDisciplina" type="hidden" id="professor2"  value="<?php echo $value['codDisciplina']; ?>" />
+                        <input name="codDisciplina" type="hidden" id="professor2"  value="<?php echo $value['id']; ?>" />
                         <button name="excluir" type="submit" class="btn-crud delete">Excluir</button>
                     </form>
                     

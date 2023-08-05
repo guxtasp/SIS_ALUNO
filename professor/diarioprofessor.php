@@ -66,6 +66,12 @@ if (isset($_POST['submit'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <title>Notas</title>
+    <style>
+    .button > a:hover {
+    text-decoration: none;
+    color: white;
+}
+</style>
 </head>
 
 <body>
@@ -73,8 +79,17 @@ if (isset($_POST['submit'])) {
         <div class="identificacao-section">
             <img src="../assets/logotipo_logo.png" alt="">
             <h1 class="title-section">Acesso ao Sistema</h1>
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                Infelizmente, essa funcionalidade está em fase de construção devido empecilhos no banco de dados.
+            </div>
         </div>
         <hr>
+        <?php if (isset($_POST['submit']) && $professor) { ?>
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                Infelizmente, essa funcionalidade está em fase de construção.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php } ?>
         <form method="POST" action="diarioprofessor.php">
             <label for="identificacaoProfessor">Digite o ID ou Nome do Professor:</label>
             <input type="text" name="identificacaoProfessor" id="identificacaoProfessor" required>
