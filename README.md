@@ -30,5 +30,18 @@ Para executar o sistema em sua máquina local, você precisará ter instalados o
 
 3. **MySQL Workbench:** Uma ferramenta gráfica para modelagem, desenvolvimento e administração de bancos de dados MySQL. Você pode fazer o download do MySQL Workbench em: https://www.mysql.com/products/workbench/
 
+## Limitações Atuais
+
+Devido a problemas no banco de dados fornecido, algumas das funcionalidades descritas anteriormente não estão disponíveis na versão atual do Sistema de Gerenciamento de Alunos (SIS_ALUNO). As limitações atuais incluem:
+
+1. **Acesso às Notas dos Alunos:** A funcionalidade de acesso às notas dos alunos não está disponível devido a problemas no banco de dados.
+
+2. **Diário de Notas para Professores:** Os professores não podem acessar o diário de notas dos alunos em suas respectivas disciplinas devido a problemas no banco de dados.
+
+3. **Visibilidade das Notas dos Alunos:** A visibilidade das notas dos alunos em todas as disciplinas não está disponível atualmente.
+
+Estamos trabalhando diligentemente para resolver essas limitações e oferecer uma experiência completa de gerenciamento de alunos em breve. Agradecemos a sua compreensão.
+
+Por favor, acesse o [SIS_ALUNO](https://ceteia.guanambi.ifbaiano.edu.br/pswmedio/php/sisaluno/gustavo/index.php) para utilizar as funcionalidades disponíveis.
 
 
